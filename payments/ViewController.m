@@ -124,11 +124,15 @@ UITextRange *previousSelection;
     NSMutableString *replaceStr = [NSMutableString new];
     
 
-    for (int i=0;i < self.finalCCNumber.length;i++) {
-        if (i < 12) {
+    for (int i=0;i < textField.text.length;i++) {
+        unichar c = [textField.text characterAtIndex:i];
+        if (i < textField.text.length - 4) {
+            if (isspace(c)) {
+                [replaceStr appendString:@" "];
+                continue;
+            }
             [replaceStr appendString:@"●"];
         } else {
-            unichar c = [self.finalCCNumber characterAtIndex:i];
             [replaceStr appendString:[NSString stringWithCharacters:&c length:1]];
         }
     }
